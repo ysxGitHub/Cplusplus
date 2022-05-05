@@ -1,0 +1,27 @@
+[
+{
+  "directory": "D:/Projects/C++ projects/VScodeCMake/build",
+  "command": "D:\\PROGRA~2\\MinGW\\bin\\G__~1.EXE  @CMakeFiles/algorithm.dir/includes_CXX.rsp -g -o CMakeFiles\\algorithm.dir\\src\\add.obj -c \"D:\\Projects\\C++ projects\\VScodeCMake\\src\\add.cpp\"",
+  "file": "D:/Projects/C++ projects/VScodeCMake/src/add.cpp"
+},
+{
+  "directory": "D:/Projects/C++ projects/VScodeCMake/build",
+  "command": "D:\\PROGRA~2\\MinGW\\bin\\G__~1.EXE  @CMakeFiles/algorithm.dir/includes_CXX.rsp -g -o CMakeFiles\\algorithm.dir\\src\\div.obj -c \"D:\\Projects\\C++ projects\\VScodeCMake\\src\\div.cpp\"",
+  "file": "D:/Projects/C++ projects/VScodeCMake/src/div.cpp"
+},
+{
+  "directory": "D:/Projects/C++ projects/VScodeCMake/build",
+  "command": "D:\\PROGRA~2\\MinGW\\bin\\G__~1.EXE  @CMakeFiles/algorithm.dir/includes_CXX.rsp -g -o CMakeFiles\\algorithm.dir\\src\\multi.obj -c \"D:\\Projects\\C++ projects\\VScodeCMake\\src\\multi.cpp\"",
+  "file": "D:/Projects/C++ projects/VScodeCMake/src/multi.cpp"
+},
+{
+  "directory": "D:/Projects/C++ projects/VScodeCMake/build",
+  "command": "D:\\PROGRA~2\\MinGW\\bin\\G__~1.EXE  @CMakeFiles/algorithm.dir/includes_CXX.rsp -g -o CMakeFiles\\algorithm.dir\\src\\sub.obj -c \"D:\\Projects\\C++ projects\\VScodeCMake\\src\\sub.cpp\"",
+  "file": "D:/Projects/C++ projects/VScodeCMake/src/sub.cpp"
+},
+{
+  "directory": "D:/Projects/C++ projects/VScodeCMake/build",
+  "command": "D:\\PROGRA~2\\MinGW\\bin\\G__~1.EXE  @CMakeFiles/algorithm.dir/includes_CXX.rsp -g -o CMakeFiles\\algorithm.dir\\main.obj -c \"D:\\Projects\\C++ projects\\VScodeCMake\\main.cpp\"",
+  "file": "D:/Projects/C++ projects/VScodeCMake/main.cpp"
+}
+]

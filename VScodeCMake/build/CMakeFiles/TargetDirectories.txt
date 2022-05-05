@@ -1,0 +1,3 @@
+D:/Projects/C++ projects/VScodeCMake/build/CMakeFiles/algorithm.dir
+D:/Projects/C++ projects/VScodeCMake/build/CMakeFiles/edit_cache.dir
+D:/Projects/C++ projects/VScodeCMake/build/CMakeFiles/rebuild_cache.dir
