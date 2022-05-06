@@ -33,4 +33,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dbconf.json">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
 </Project>

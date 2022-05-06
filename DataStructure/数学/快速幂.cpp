@@ -40,6 +40,19 @@ ll quick_mul(ll a, ll b, ll mod){
 }
 
 
+// 50. Pow(x, n)
+double myPow(double x, int n) {
+    double res = 1.0;
+    for(int i = n; i != 0; i /= 2){
+        if(i % 2 != 0){
+            res *= x;
+        }
+        x *= x;
+    }
+    return  n < 0 ? 1 / res : res;
+}
+
+
 int main(int argc, char const *argv[])
 {
     cout<<qpow(3,14)<<endl;

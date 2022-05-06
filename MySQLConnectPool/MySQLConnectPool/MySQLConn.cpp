@@ -1,17 +1,17 @@
-#include "MySQLConn.h"
+ï»¿#include "MySQLConn.h"
 
 MySQLConn::MySQLConn()
 {
-	// ³õÊ¼»¯Á¬½Ó»·¾³
+	// åˆå§‹åŒ–è¿æ¥ç¯å¢ƒ
 	m_conn = mysql_init(nullptr);
-	// ÉèÖÃ±àÂëÎªutf-8
+	// è®¾ç½®ç¼–ç ä¸ºutf-8
 	mysql_set_character_set(m_conn, "utf8");
 }
 
 MySQLConn::~MySQLConn()
 {
 	if (m_conn != nullptr) {
-		// ÊÍ·ÅÊı¾İ¿â×ÊÔ´
+		// é‡Šæ”¾æ•°æ®åº“èµ„æº
 		mysql_close(m_conn);
 	}
 	freeResult();
@@ -19,21 +19,21 @@ MySQLConn::~MySQLConn()
 
 bool MySQLConn::connect(std::string user, std::string password, std::string dbname, std::string ip, unsigned short port)
 {
-	// 2.Á¬½ÓÊı¾İ¿â·şÎñÆ÷
+	// 2.è¿æ¥æ•°æ®åº“æœåŠ¡å™¨
 	MYSQL* ptr = mysql_real_connect(m_conn,
-		ip.c_str(), // mysql·şÎñÆ÷µÄÖ÷»úµØÖ·, Ğ´IPµØÖ·¼´¿É (localhost/NULL ´ú±í±¾µØÁ¬½Ó)
-		user.c_str(), // Á¬½Ómysql·şÎñÆ÷µÄÓÃ»§Ãû, Ä¬ÈÏ: root
-		password.c_str(),   // Á¬½Ómysql·şÎñÆ÷ÓÃ»§¶ÔÓ¦µÄÃÜÂë, rootÓÃ»§µÄÃÜÂë
-		dbname.c_str(),  // ÒªÊ¹ÓÃµÄÊı¾İ¿âµÄÃû×Ö
-		port,  // Á¬½ÓµÄmysql·şÎñÆ÷¼àÌıµÄ¶Ë¿Ú, Èç¹û==0, Ê¹ÓÃmysqlµÄÄ¬ÈÏ¶Ë¿Ú3306, !=0, Ê¹ÓÃÖ¸¶¨µÄÕâ¸ö¶Ë¿Ú
-		nullptr, // ±¾µØÌ×½Ó×Ö, ²»Ê¹ÓÃÖ¸¶¨Îª NULL
+		ip.c_str(), // mysqlæœåŠ¡å™¨çš„ä¸»æœºåœ°å€, å†™IPåœ°å€å³å¯ (localhost/NULL ä»£è¡¨æœ¬åœ°è¿æ¥)
+		user.c_str(), // è¿æ¥mysqlæœåŠ¡å™¨çš„ç”¨æˆ·å, é»˜è®¤: root
+		password.c_str(),   // è¿æ¥mysqlæœåŠ¡å™¨ç”¨æˆ·å¯¹åº”çš„å¯†ç , rootç”¨æˆ·çš„å¯†ç 
+		dbname.c_str(),  // è¦ä½¿ç”¨çš„æ•°æ®åº“çš„åå­—
+		port,  // è¿æ¥çš„mysqlæœåŠ¡å™¨ç›‘å¬çš„ç«¯å£, å¦‚æœ==0, ä½¿ç”¨mysqlçš„é»˜è®¤ç«¯å£3306, !=0, ä½¿ç”¨æŒ‡å®šçš„è¿™ä¸ªç«¯å£
+		nullptr, // æœ¬åœ°å¥—æ¥å­—, ä¸ä½¿ç”¨æŒ‡å®šä¸º NULL
 		0);
 	return ptr != nullptr;
 }
 
 bool MySQLConn::update(std::string sql)
 {
-	// ¸üĞÂÊı¾İ¿â
+	// æ›´æ–°æ•°æ®åº“
 	if (mysql_query(m_conn, sql.c_str())) {
 		return false;
 	}
@@ -43,11 +43,11 @@ bool MySQLConn::update(std::string sql)
 bool MySQLConn::query(std::string sql)
 {
 	freeResult();
-	// ²éÑ¯Êı¾İ¿â
+	// æŸ¥è¯¢æ•°æ®åº“
 	if (mysql_query(m_conn, sql.c_str())) {
 		return false;
 	}
-	// ±£´æ½á¹û¼¯
+	// ä¿å­˜ç»“æœé›†
 	m_result = mysql_store_result(m_conn);
 	return true;
 }
@@ -55,45 +55,65 @@ bool MySQLConn::query(std::string sql)
 bool MySQLConn::next()
 {
 	if (m_result != nullptr) {
-		// µÃµ½Ò»ĞĞĞÅÏ¢
+		// å¾—åˆ°ä¸€è¡Œä¿¡æ¯
 		m_row = mysql_fetch_row(m_result);
+		if (m_row != nullptr) {
+			return true;
+		}
 	}
 	return false;
 }
 
 std::string MySQLConn::value(int index)
 {
-	// µÃµ½½á¹û¼¯ÖĞµÄÁĞÊı
+	// å¾—åˆ°ç»“æœé›†ä¸­çš„åˆ—æ•°
 	int colNum = mysql_num_fields(m_result);
 	if (index >= colNum || index < 0) {
 		return std::string();
 	}
 	char* val = m_row[index];
-	// µÃµ½½á¹û¼¯ÖĞ¸Ã×Ö¶ÎµÄ³¤¶È 
+	// å¾—åˆ°ç»“æœé›†ä¸­è¯¥å­—æ®µçš„é•¿åº¦ 
 	unsigned long length = mysql_fetch_lengths(m_result)[index];
 	return std::string(val, length);
 }
 
 bool MySQLConn::transaction()
 {
-	// ÉèÖÃÊÂÎñÎªÊÖ¶¯Ìá½»
+	// è®¾ç½®äº‹åŠ¡ä¸ºæ‰‹åŠ¨æäº¤
 	return mysql_autocommit(m_conn, false);
 }
 
 bool MySQLConn::commit()
 {
-	// Ìá½»ÊÂÎñ
+	// æäº¤äº‹åŠ¡
 	return mysql_commit(m_conn);
 }
 
 bool MySQLConn::rollback()
 {
-	// ÊÂÎñ»Ø¹ö
+	// äº‹åŠ¡å›æ»š
 	return mysql_rollback(m_conn);
+}
+
+void MySQLConn::refreshAliveTime()
+{
+	// å¾—åˆ°æ—¶é—´ç‚¹
+	m_alivetime = std::chrono::steady_clock::now();
+}
+
+long long MySQLConn::getAliveTime()
+{
+	// å¾—åˆ°æ—¶é—´æ®µ
+	std::chrono::nanoseconds res = std::chrono::steady_clock::now() - m_alivetime;
+	// å°† ns è½¬ä¸º ms
+	std::chrono::milliseconds millsec = std::chrono::duration_cast<std::chrono::milliseconds>(res);
+	
+	// è¿”å›å¤šå°‘ä¸ª ms
+	return millsec.count();
 }
 
 void MySQLConn::freeResult()
 {
-	// ÊÍ·Å×ÊÔ´ - ½á¹û¼¯
+	// é‡Šæ”¾èµ„æº - ç»“æœé›†
 	mysql_free_result(m_result);
 }

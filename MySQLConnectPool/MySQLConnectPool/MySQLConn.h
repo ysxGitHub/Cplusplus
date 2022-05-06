@@ -1,33 +1,41 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 #include <mysql.h>
+#include <chrono>
 class MySQLConn
 {
 public:
-	// ³õÊ¼»¯Êı¾İ¿âÁ¬½Ó
+	// åˆå§‹åŒ–æ•°æ®åº“è¿æ¥
 	MySQLConn();
-	// ÊÍ·ÅÊı¾İ¿âÁ¬½Ó
+	// é‡Šæ”¾æ•°æ®åº“è¿æ¥
 	~MySQLConn();
-	// Á¬½ÓÊı¾İ¿â
+	// è¿æ¥æ•°æ®åº“
 	bool connect(std::string user, std::string password, std::string dbname, std::string ip, unsigned short port = 3306);
-	// ¸üĞÂÊı¾İ¿â£ºinsert£¬update£¬delete
+	// æ›´æ–°æ•°æ®åº“ï¼šinsertï¼Œupdateï¼Œdelete
 	bool update(std::string sql);
-	// ²éÑ¯Êı¾İ¿â
+	// æŸ¥è¯¢æ•°æ®åº“
 	bool query(std::string sql);
-	// ±éÀú²éÑ¯µÃµ½µÄ½á¹û¼¯
+	// éå†æŸ¥è¯¢å¾—åˆ°çš„ç»“æœé›†
 	bool next();
-	// µÃµ½½á¹û¼¯ÖĞµÄ×Ö¶ÎÖµ
+	// å¾—åˆ°ç»“æœé›†ä¸­çš„å­—æ®µå€¼
 	std::string value(int index);
-	// ÊÂÎñ²Ù×÷
+	// äº‹åŠ¡æ“ä½œ
 	bool transaction();
-	// Ìá½»ÊÂÎñ
+	// æäº¤äº‹åŠ¡
 	bool commit();
-	// ÊÂÎñ»Ø¹ö
+	// äº‹åŠ¡å›æ»š
 	bool rollback();
+	// åˆ·æ–°èµ·å§‹çš„ç©ºé—²æ—¶é—´ç‚¹
+	void refreshAliveTime();
+	// è®¡ç®—è¿æ¥å­˜æ´»çš„æ€»æ—¶é•¿
+	long long getAliveTime();
+
 private:
 	MYSQL* m_conn = nullptr;
 	MYSQL_RES* m_result = nullptr;
 	MYSQL_ROW m_row = nullptr;
 	void freeResult();
+	// ç»å¯¹æ—¶é’Ÿ
+	std::chrono::steady_clock::time_point m_alivetime;
 };
 
