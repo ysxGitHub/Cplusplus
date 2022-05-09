@@ -3,13 +3,6 @@
 #include <fstream>
 #include <thread>
 
-ConnectionPool* ConnectionPool::getConnectPool()
-{
-	// 创建静态局部对象, C++11 不用考虑线程安全
-	static ConnectionPool pool;
-	return &pool;
-}
-
 bool ConnectionPool::parseJsonFile()
 {
 	// 得到流对象
@@ -33,6 +26,13 @@ bool ConnectionPool::parseJsonFile()
 		return true;
 	}
 	return false;
+}
+
+ConnectionPool* ConnectionPool::getConnectPool()
+{
+	// 创建静态局部对象, C++11 不用考虑线程安全
+	static ConnectionPool pool;
+	return &pool;
 }
 
 void ConnectionPool::addConnection()

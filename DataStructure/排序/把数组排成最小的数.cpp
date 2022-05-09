@@ -1,6 +1,9 @@
 /*
 输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
 */
+#include <queue>
+#include <iostream>
+using namespace std;
 
 struct cmp{
     bool operator()(string&a, string&b){

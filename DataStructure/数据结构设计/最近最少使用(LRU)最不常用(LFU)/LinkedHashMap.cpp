@@ -35,11 +35,11 @@ public:
     typedef typename std::list<EntryType>::iterator iterator;
     // list中的const迭代器
     typedef typename std::list<EntryType>::const_iterator const_iterator;
-    
+
     /*
     * @brief 在map中插入一个新的entry
     * @param [in] new——entry : 待添加的entry
-    */ 
+    */
     std::pair<iterator, bool> insert(const EntryType& new_entry){
         _map_itr pIt = _map_key2entry.find(new_entry.first);
         if(pIt == _map_key2entry.end()) {
@@ -53,12 +53,12 @@ public:
         }
         return std::pair<iterator, bool>(--_values.end(), true);
     }
-   
+
     /*
     * @brief 在map中指定位置插入一个新的entry
     * @param [in] new——entry : 待添加的entry
     * @note since c++11
-    */ 
+    */
     iterator insert(const_iterator it, const EntryType& new_entry){
         _map_itr pIt = _map_key2entry.find(new_entry.first);
         if(pIt != _map_key2entry.end()){
@@ -75,7 +75,7 @@ public:
     * @brief 获取首元素的迭代器
     * @param [in] null
     * @note
-    */ 
+    */
     inline iterator begin(){
         return _values.begin();
     }
@@ -84,7 +84,7 @@ public:
     * @brief 获取首元素的const迭代器
     * @param [in] null
     * @note
-    */     
+    */
     inline const_iterator begin() const {
         return _values.begin();
     }
@@ -102,7 +102,7 @@ public:
     * @brief 获取尾元素的const迭代器
     * @param [in] null
     * @note
-    */    
+    */
     inline const_iterator end() const {
         return _values.end();
     }
@@ -111,7 +111,7 @@ public:
     * @brief 返回entries的数量
     * @param [in] null
     * @note
-    */     
+    */
     inline size_t size() const {
         return _size;
     }
@@ -126,7 +126,7 @@ public:
             _map_itr it = _map_key2entry.find(key);
             if(it == _map_key2entry.end()){
                 return _values.end();
-            } 
+            }
             iterator find_it = it->second;
             return find_it;
         }
@@ -143,12 +143,12 @@ public:
             _map_citr it = _map_key2entry.find(key);
             if(it == _map_key2entry.end()){
                 return _values.end();
-            } 
+            }
             const_iterator find_it = it->second;
             return find_it;
         }
         return _values.end();
-    }  
+    }
 
     /*
     * @brief 移除位于pos处的entry
@@ -168,7 +168,7 @@ public:
     * @brief 移除指定键值的entry
     * @param [in] key : 指定的键值
     * @note
-    */ 
+    */
     void erase(const KeyType& key){
         iterator it = find(key);
         if(it != _values.end()){
@@ -180,7 +180,7 @@ public:
     * @brief 清空所有的entry
     * @param [in] null
     * @note
-    */ 
+    */
     void clear(){
         _values.clear();
         _map_key2entry.clear();
@@ -191,7 +191,7 @@ public:
     * @brief 获取该map是否为空
     * @param [in] null
     * @note
-    */ 
+    */
     inline bool empty() const{
         return _values.empty();
     }
@@ -235,6 +235,6 @@ struct StrEqual{
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }
