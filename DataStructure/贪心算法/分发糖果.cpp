@@ -17,4 +17,21 @@ n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的
 
 相邻的学生中，评分高的学生必须获得更多的糖果 ！！！等价于！！！所有学生满足左规则且满足右规则。
 */
+#include<vector>
+#include<iostream>
+#include<numeric>
+using namespace std;
 
+int candy(vector<int>& ratings) {
+    int n = ratings.size();
+    vector<int>candies(n, 1);
+    for(int i=1; i<n; i++){
+        if(ratings[i]>ratings[i-1])
+            candies[i] = candies[i-1] + 1;
+    }
+    for(int i=n-2; i>=0;i--){
+        if(ratings[i]>ratings[i+1])
+            candies[i] = max(candies[i], candies[i+1]+1);
+    }
+    return accumulate(candies.begin(), candies.end(), 0);
+}

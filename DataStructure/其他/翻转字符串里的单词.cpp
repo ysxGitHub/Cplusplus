@@ -49,17 +49,17 @@ string reverseWords2(string s) {
             }
             // 寻找下一个单词的开始位置
             if(s[j]!=' '){
-                // 不等于' '说明j在前一个单词中的某一位置 
+                // 不等于' '说明j在前一个单词中的某一位置
                 while(s[j]!=' '){
                     j++;
                 }
                 j++;
             }else{
-                // 等于' '说明j在前一个单词后的某一位置 
+                // 等于' '说明j在前一个单词后的某一位置
                 while(s[j]==' '){
                     j--;
                 }
-                j+=2;                    
+                j+=2;
             }
 
         }else{
@@ -110,9 +110,36 @@ string reverseWords(string s) {
 }
 
 
+// 方法3
+void removeSpace(string& s){
+    int slow = 0;
+    for(int i=0; i<s.size(); i++){
+        if(s[i]!=' '){
+            if(slow!=0) s[slow++] = ' ';
+            while(i<s.size()&&s[i]!=' '){
+                s[slow++] = s[i++];
+            }
+        }
+    }
+    s.resize(slow);
+}
+
+string reverseWords(string s) {
+    removeSpace(s);
+    reverse(s.begin(), s.end());
+    int start = 0;
+    for(int i=0; i<=s.size(); ++i){
+        if(i==s.size()||s[i]==' '){
+            reverse(s.begin()+start, s.begin()+i);
+            start = i+1;
+        }
+    }
+    return s;
+}
+
 int main(int argc, char const *argv[])
 {
-    
+
     string s = "hello world I Love You";
     reverse(s.begin(), s.end());
     return 0;

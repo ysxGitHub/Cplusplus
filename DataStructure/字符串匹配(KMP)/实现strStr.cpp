@@ -18,31 +18,6 @@
 
 using namespace std;
 
-int strStr1(string haystack, string needle) {
-    if(needle.empty()){
-        return 0;
-    }
-    int lenh = haystack.length();
-    int lenn = needle.length();
-    int i = 0, j;
-    while(i < (lenh-lenn)+1){
-        j = 0;
-        while(j < lenn){
-            if(haystack[i+j]==needle[j]){
-                j++;
-                if(j==lenn){
-                    return i;
-                }
-            } 
-            else{
-                break;
-            }   
-        }
-        i++;
-    }
-    return -1;
-}
-
 
 /*
 abcabd
@@ -109,7 +84,7 @@ int kmp (string hasyarr, string nearr) {
 
 
 
-int strStr(string haystack, string needle) {
+int strStr1(string haystack, string needle) {
     // 当 needle 是空字符串时我们应当返回 0
     if (needle.length() == 0) {
         return 0;
@@ -121,12 +96,47 @@ int strStr(string haystack, string needle) {
     return kmp(haystack, needle);
 }
 
+
+// 方法2：hash字符串
+typedef unsigned long long ull;
+const int X = 13331;
+vector<ull> h, x;
+void BKDR_hash(string& s){
+    x[0] = 1;
+    h[0] = s[0];
+    for(int i=1; i<s.size(); i++){
+        h[i] = h[i-1]*X + s[i];
+        x[i] = x[i-1]*X;
+    }
+}
+
+ull get_hash(int left, int right){
+    return left?h[right]-h[left-1]*x[right-left+1]:h[right];
+}
+
+int strStr(string haystack, string needle) {
+    int n = haystack.size(), m = needle.size();
+    // 计算 needle 的哈希值
+    ull hashcode2 = 0;
+    for(auto&c: needle){
+        hashcode2 = hashcode2*X + c;
+    }
+    h.resize(n), x.resize(n);
+    // 计算 haystack 每个区间的哈希值
+    BKDR_hash(haystack);
+    for(int i=0; i<n; i++){
+        if(get_hash(i, min(n, m+i-1))==hashcode2) return i;
+    }
+    return -1;
+}
+
+
 int main(int argc, char const *argv[])
 {
     string haystack = "aabaaabaaac";
     string needle = "aabaaac";
 
-    cout<<strStr1(haystack, needle)<<endl;
+    cout<<strStr(haystack, needle)<<endl;
     return 0;
 }
 

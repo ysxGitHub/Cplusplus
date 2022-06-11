@@ -12,6 +12,7 @@
 
 using namespace std;
 
+// 快慢指针的思想
 int findDuplicate1(vector<int>& nums) {
     int n = nums.size();
     int fast = 0, slow=0;
@@ -19,7 +20,7 @@ int findDuplicate1(vector<int>& nums) {
         fast = nums[nums[fast]];
         slow = nums[slow];
     }while(fast!=slow);
-    fast = 0; 
+    fast = 0;
     while(fast!=slow){
         fast = nums[fast];
         slow = nums[slow];
@@ -30,7 +31,7 @@ int findDuplicate1(vector<int>& nums) {
 /*
     nums = [1,2,2,2,4,6]
      idx    1,2,3,4,5,6
-     cnt    1 4 4 5 5 6 
+     cnt    1 4 4 5 5 6
     目标 要找到第一个cnt[i]>idx的位置
         cnt为单调递增的
 */

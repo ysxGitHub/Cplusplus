@@ -14,7 +14,8 @@ using namespace std;
 
 int longestCommonSubsequence(string text1, string text2) {
     int m = text1.size(), n = text2.size();
-    vector<vector<int>>dp(m+1, vector<int>(n+1, 0));      
+    vector<vector<int>>dp(m+1, vector<int>(n+1, 0));
+    // 在子数组arr1[0..i]和子数组arr2[0..j]中，我们要求的子序列（最长公共子序列）长度为dp[i][j]。
     for(int i=0; i<m; i++){
         for(int j=0; j<n; j++){
             if(text1[i]==text2[j]){
@@ -29,6 +30,6 @@ int longestCommonSubsequence(string text1, string text2) {
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

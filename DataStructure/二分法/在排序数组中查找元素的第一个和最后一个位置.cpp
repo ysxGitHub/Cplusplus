@@ -11,6 +11,7 @@
  */
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 
@@ -57,4 +58,11 @@ vector<int> searchRange(vector<int>& nums, int target) {
     }
 
     return ans;
+}
+
+
+vector<int> searchRange(vector<int>& nums, int target) {
+    int poshi = upper_bound(nums.begin(), nums.end(), target)-nums.begin()-1;
+    int poslo = lower_bound(nums.begin(), nums.end(), target)-nums.begin();
+    return poslo>poshi?vector<int>{-1,-1}:vector<int>{poslo, poshi};
 }

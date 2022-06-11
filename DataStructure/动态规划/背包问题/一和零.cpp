@@ -10,7 +10,7 @@
 #include<iostream>
 using namespace std;
 
-pair<int, int>get01(string s){
+pair<int, int>get01(string& s){
     int a=0, b=0;
     for(int i=0; i<s.size(); i++){
         if(s[i]=='0'){
@@ -29,7 +29,7 @@ int findMaxForm(vector<string>& strs, int m, int n) {
         int zero = num.first, one = num.second;
         for(int i=m; i>=zero; i--){
             for(int j=n; j>=one; j--){
-                dp[i][j] = max(dp[i][j], dp[i-zero][j-one] + 1); 
+                dp[i][j] = max(dp[i][j], dp[i-zero][j-one] + 1);
             }
         }
     }

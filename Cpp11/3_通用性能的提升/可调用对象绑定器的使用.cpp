@@ -11,8 +11,10 @@ public:
     int m_num = 100;
 };
 
+/*
+可调用对象包装器 std::function 是不能实现对类成员函数指针或者类成员指针的包装的，但是通过绑定器 std::bind 的配合之后，就可以完美的解决这个问题
 
-
+*/
 int main(int argc, char const *argv[])
 {
     Test t;

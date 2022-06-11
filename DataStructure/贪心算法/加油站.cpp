@@ -29,32 +29,29 @@ int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
     }
     // 肯定不行
     if(sum<0) return -1;
-    // 
+    //
     return start==n ? 0 : start;
 }
 
 int canCompleteCircuit1(vector<int>& gas, vector<int>& cost) {
     int n = gas.size();
-    int sum = 0;
+    int sum = 0, curSum = 0;
+    int start = 0;
     for(int i=0; i<n; i++){
+        curSum += gas[i] - cost[i];
         sum += gas[i] - cost[i];
-    }
-    if(sum<0) return -1;
-    int tank = 0, start = 0;
-    for(int i=0; i<n; i++){
-        tank += gas[i] - cost[i];
-        if(tank < 0){
-            // 无法从 start 走到 i
-            // 所以站点 i + 1 应该是起点
-            start = i+1;
-            tank = 0;
+        if(curSum<0){
+            // 无法从 start 到 i, 只能从 i+1 开始
+            start = i + 1;
+            curSum = 0;
         }
     }
-    return start==n ? 0 : start;
+    if(sum<0) return -1;
+    return start;
 }
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

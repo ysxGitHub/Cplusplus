@@ -8,7 +8,6 @@
 珂珂喜欢慢慢吃，但仍然想在警卫回来前吃掉所有的香蕉。
 
 返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）。
-
 */
 
 #include <iostream>
@@ -16,7 +15,7 @@
 #include <cmath>
 using namespace std;
 
-// f(x)
+// f(x)  注意：double x 很重要
 int countH(vector<int>& piles, double x){
     int ans=0;
     for(auto&p: piles){
@@ -39,10 +38,10 @@ int minEatingSpeed(vector<int>& piles, int h) {
         }
         else if(mh<=h){
             right = mid - 1;
-        } 
+        }
         // else{
         //     right = mid - 1;
-        // } 
+        // }
     }
     return left;
 }

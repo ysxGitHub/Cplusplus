@@ -117,9 +117,9 @@ int binaryFindRight(vector<int> &array, int target)
 
 int main(int argc, char const *argv[])
 {
-    vector<int> array = {1, 6, 7, 8, 9, 10};
+    vector<int> array = {1, 6, 8, 9, 10};
     cout << binaryFind(array, 2) << endl;
-    cout << binaryFindLeft(array, 2) << endl;
+    cout << binaryFindLeft(array, 7) << endl;
     cout << binaryFindRight(array, 2) << endl;
     return 0;
 }

@@ -43,6 +43,7 @@ int left_bound(vector<int>& arr, int tar){
 // 位操作
 bool isSubsequence(string s, string t) {
     int m = s.size(), n = t.size();
+    // 记录t中每一个元素位置，相同元素位置放在一起
     vector<vector<int>>charToIdx(26);
     for(int i=0; i<n; i++){
         int ch = t[i] - 'a';
@@ -54,7 +55,7 @@ bool isSubsequence(string s, string t) {
         int ch = s[i] - 'a';
         if(charToIdx[ch].size()==0) return false;
         int pos = left_bound(charToIdx[ch], j);
-        if(pos >= charToIdx[ch].size()|| pos < j) return false;
+        if(pos == charToIdx[ch].size()) return false;
         j = charToIdx[ch][pos] + 1;
     }
     return true;
@@ -62,6 +63,6 @@ bool isSubsequence(string s, string t) {
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

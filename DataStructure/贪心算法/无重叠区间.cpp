@@ -29,7 +29,7 @@ int eraseOverlapIntervals(vector<vector<int>>& intervals) {
             x_end = x[1];
         }
     }
-
+    return n-cnt;
 }
 
 
@@ -41,7 +41,7 @@ int eraseOverlapIntervals1(vector<vector<int>>& intervals) {
     // 按 start 升序排序
     sort(intervals.begin(), intervals.end(), [](vector<int>&a, vector<int>&b){
         return a[0]<b[0];
-    });    
+    });
 
     vector<int>dp(n, 1);
     for(int i=1; i<n; i++){
@@ -59,6 +59,6 @@ int eraseOverlapIntervals1(vector<vector<int>>& intervals) {
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

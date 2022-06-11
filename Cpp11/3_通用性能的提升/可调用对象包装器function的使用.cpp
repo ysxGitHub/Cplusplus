@@ -14,7 +14,7 @@ using func_ptr = void(*)(int, string);
 struct Test{
 
     static void print(int a, string b){ //静态成员 属于类的
-        cout<<"name: "<<b<<", agr: "<<a<<endl;
+        cout<<"(static) name: "<<b<<", agr: "<<a<<endl;
     }
 
     void print1(int a, string b){ //属于对象的，没有对象就不存在

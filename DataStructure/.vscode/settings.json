@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.md": "mdx",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -43,6 +44,9 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ctime": "cpp",
+        "map": "cpp",
+        "unordered_set": "cpp"
     }
 }

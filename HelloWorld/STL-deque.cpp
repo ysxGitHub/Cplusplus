@@ -90,7 +90,7 @@ void test03()
     d1.push_front(3);
     d1.push_back(4);
     printD<int>(d1);
-    
+
     // 尾删
     d1.pop_back();
     printD<int>(d1);
@@ -123,7 +123,7 @@ void test03()
     // 全部删除
     // d2.erase(d2.begin(), d2.end());
     printD<int>(d2);
-    
+
     // 清空
     d2.clear();
     printD<int>(d2);
@@ -139,8 +139,8 @@ void test04()
         d1.push_back(i);
     }
     // 输出第1元素
-    cout<<d1[1]<<endl;
-    cout<<d1.at(1)<<endl;
+    cout<<d1[3]<<endl;
+    cout<<d1.at(2)<<endl;
 
     // 获取第一个和最后一个位置的数据
     cout<<d1.front()<<endl;

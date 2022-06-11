@@ -8,12 +8,14 @@
 #include<iostream>
 using namespace std;
 
-// 
 bool wordBreak(string s, vector<string>& wordDict) {
+    // s 相当于背包, wordDict 相当于物品
+    // 又相当于考虑顺序的组合问题
     int n = s.size();
+    // dp[i] 表示 [0~i] 是否可以由 wordDict中的单词 组成
     vector<bool>dp(n+1);
     dp[0] = 1;
-    for(int i=0; i<=n; i++){
+    for(int i=0; i<=n; i++){ // 这里可以等于 n
         for(string w : wordDict){
             int len = w.size();
             if(i>=len && s.substr(i-len, len)==w){
@@ -26,6 +28,6 @@ bool wordBreak(string s, vector<string>& wordDict) {
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

@@ -39,7 +39,7 @@ struct T2 {
     long y;
 protected:
     static int z;
-}t{ 1, 100， 2};		// error
+}t{ 1, 100, 2};		// error
 
 struct T2{
     int x;

@@ -11,13 +11,13 @@
 using namespace std;
 
 int maxProfit1(vector<int>& prices) {
-    int s = 0; 
+    int s = 0;
     for(int i = 0;i<prices.size()-1;i++){
-        if(prices[i+1]-prices[i]>0){ 
-            s+=prices[i+1]-prices[i]; 
-        } 
-    } 
-    return s; 
+        if(prices[i+1]-prices[i]>0){
+            s+=prices[i+1]-prices[i];
+        }
+    }
+    return s;
 }
 
 // 交易总数 k 为 正无穷
@@ -35,8 +35,17 @@ int maxProfit(vector<int>& prices) {
 }
 
 
+int maxProfit(vector<int>& prices) {
+    int result = 0;
+    for (int i = 1; i < prices.size(); i++) {
+        result += max(prices[i] - prices[i - 1], 0);
+    }
+    return result;
+}
+
+
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

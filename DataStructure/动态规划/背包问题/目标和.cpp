@@ -138,17 +138,19 @@ int findTargetSumWays(vector<int>& nums, int target) {
         }
     }
     return dp[len][neg];
+}
 
-    /*
-    空间改进
-    vector<int> dp(neg+1, 0);
-    dp[0]=1;
-    // 变成0-1背包问题
-    for(auto&n: nums){
-        for(int j=neg; j>=n; j--){
-            dp[j] += dp[j-n];
+/*空间改进*/
+int findTargetSumWays(vector<int>& nums, int target) {
+    int sum = accumulate(nums.begin(), nums.end(), 0);
+    if((target+sum)%2||abs(target)>sum) return 0;
+    target = (target+sum)/2;
+    vector<int>dp(target+1);
+    dp[0] = 1;
+    for(const auto&num: nums){
+        for(int i=target; i>=num; --i){
+            dp[i] += dp[i-num];
         }
     }
-    return dp[neg];
-    */
+    return dp[target];
 }

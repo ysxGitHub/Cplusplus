@@ -62,8 +62,7 @@ int main2(int argc, char const *argv[])
 
     // 类的函数指针
     func_ptr f1 = Test::print;
-    func_ptr f = Test::print1; //error 左边不是类里的函数指针，右边是类里的函数指针
-
+    // func_ptr f = Test::print1; //error 左边不是类里的函数指针，右边是类里的函数指针
     return 0;
 }
 

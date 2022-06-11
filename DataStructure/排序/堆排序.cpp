@@ -3,36 +3,32 @@
 
 using namespace std;
 
-void heapify(vector<int>& nums, int s, int n){
-    int imax = n;
-    int c1 = n*2+1;
-    int c2 = n*2+2;
-    if((c1 < s) && (nums[imax]<nums[c1])){
-        // swap(nums[imax], nums[c1]);
-        imax = c1;
+void heapify(vector<int>& nums, int n, int i){
+    int l = i*2, r = i*2+1;
+    int maxn = i;
+    if(l<n && nums[l]>nums[maxn]){
+        maxn = l;
     }
-    if((c2 < s) && (nums[imax]<nums[c2])){
-        // swap(nums[imax], nums[c2]);
-        imax = c2;
+    if(r<n && nums[r]>nums[maxn]){
+        maxn = r;
     }
-    if(imax!=n){
-        swap(nums[imax], nums[n]);
-        heapify(nums, s, imax);
+    if(maxn!=i){
+        swap(nums[i], nums[maxn]);
+        heapify(nums, n, maxn);
     }
 }
 
 
-void build_heap(vector<int>& nums){
-    int last_index = nums.size() - 1;
-    int parent = (last_index-1)/2;
-    for(int i=parent; i>=0; i--){
-        heapify(nums, last_index+1, i);
+void build_heap(vector<int>& nums, int n){
+    int parent = (n-1)/2;
+    for(int i=parent; i>=0; --i){
+        heapify(nums, n, i);
     }
 }
 
-void HeapSort(vector<int>& nums){
-    build_heap(nums);
-    for(int i=nums.size()-1; i>=0; i--){
+void heap_sort(vector<int>& nums, int n){
+    build_heap(nums, n);
+    for(int i=n-1; i>=0; --i){
         swap(nums[i], nums[0]);
         heapify(nums, i, 0);
     }
@@ -42,7 +38,7 @@ void HeapSort(vector<int>& nums){
 int main(int argc, char const *argv[])
 {
     vector<int>nums = {3,1};
-    HeapSort(nums);
+    heap_sort(nums, nums.size());
     for(auto& n: nums){
         cout<<n<<" ";
     }

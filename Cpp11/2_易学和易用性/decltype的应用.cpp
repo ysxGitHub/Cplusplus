@@ -20,7 +20,7 @@ private:
     decltype(T().begin()) m_it;
 };
 
-int main(int argc, char const *argv[])
+int main1(int argc, char const *argv[])
 {
     list<int> ls = {1,2,3,5};
     Container<list<int>> c;
@@ -32,7 +32,3 @@ int main(int argc, char const *argv[])
     c1.print(ls1);
     return 0;
 }
-
-
-
-

@@ -3,6 +3,9 @@
 using namespace std;
 
 /*
+int a = 1;
+auto f1 = [=] {return a++; };              // error, 按值捕获外部变量, a是只读的
+auto f2 = [=]()mutable {return ++a; };     // ok
 最后再剖析一下为什么通过值拷贝的方式捕获的外部变量是只读的:
     lambda表达式的类型在C++11中会被看做是一个带operator()的类，即仿函数。
     按照C++标准，lambda表达式的operator()默认是const的，一个const成员函数是无法修改成员变量值的。

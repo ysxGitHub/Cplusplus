@@ -68,7 +68,7 @@ int main(int argc, char const *argv[])
     cout << "ptr4 use_count: " << ptr4.use_count() << endl;
     cout << "ptr5 use_count: " << ptr5.use_count() << endl;
     cout << "ptr6 use_count: " << ptr6.use_count() << endl;
-     cout<<endl;
+    cout<<endl;
 
     // 4.通过 reset 方法初始化
     ptr6.reset(); // 重置

@@ -27,3 +27,40 @@ const int && j = a;
 const int && h = b;
 const int && i = d;
 
+
+#include <iostream>
+using namespace std;
+
+int&& value = 520;
+class Test
+{
+public:
+    Test()
+    {
+        cout << "construct: my name is jerry" << endl;
+    }
+    Test(const Test& a)
+    {
+        cout << "copy construct: my name is tom" << endl;
+    }
+};
+
+Test getObj()
+{
+    return Test();
+}
+
+int main()
+{
+    int a1;
+    int &&a2 = a1;        // error
+    Test& t = getObj();   // error
+    Test && t = getObj();
+    const Test& t = getObj();
+/*
+const Test& t = getObj() 这句代码的语法是正确的，
+
+常量左值引用是一个万能引用类型，它可以接受左值、右值、常量左值和常量右值。
+*/
+    return 0;
+}

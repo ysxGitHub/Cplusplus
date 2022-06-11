@@ -32,3 +32,20 @@ vector<int> sortedSquares(vector<int>& nums) {
     }
     return ans;
 }
+
+vector<int> sortedSquares(vector<int>& nums) {
+    int n = nums.size();
+    int left = 0, right = n-1, k = n-1;
+    vector<int>ans(n);
+    while(left<=right){
+        int ll = nums[left]*nums[left], rr = nums[right]*nums[right];
+        if(ll>rr){
+            ans[k--] = ll;
+            left++;
+        }else{
+            ans[k--] = rr;
+            right--;
+        }
+    }
+    return ans;
+}

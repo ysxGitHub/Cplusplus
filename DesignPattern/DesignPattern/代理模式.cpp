@@ -1,9 +1,9 @@
 
 #include <iostream>
 #include <atomic>
-using namespace std;
+// using namespace std;
 
-#define SAFE_DELETE(p) if (p) { delete p; p = NULL; }
+#define SAFE_DELETE(p) if (p) { delete p; p = nullptr; }
 
 // 计数
 class KRefCount
@@ -20,7 +20,7 @@ public:
     void Reset(){ m_nCount = 0; }
 
 private:
-    atomic_uint32_t m_nCount;
+    std::atomic_uint32_t m_nCount;
 };
 
 template <typename T>
@@ -69,6 +69,7 @@ public:
 
     SmartPtr<T>& operator=(const SmartPtr<T>& sp)
     {
+        std::cout<<"====\n";
         if (this != &sp)
         {
             if (m_pReference && m_pReference->Release() == 0)
@@ -87,6 +88,7 @@ public:
 
     SmartPtr<T>& operator=(T* pValue)
     {
+        std::cout<<"==\n";
         if (m_pReference && m_pReference->Release() == 0)
         {
             SAFE_DELETE(m_pData);
@@ -157,9 +159,21 @@ private:
 
 int main()
 {
+
     SmartPtr<CTest> pSmartPtr1(new CTest(10));
     SmartPtr<CTest> pSmartPtr2(new CTest(20));
     std::cout<<pSmartPtr1.use_count()<<std::endl;
+    std::cout<<pSmartPtr2.use_count()<<std::endl;
     pSmartPtr1 = pSmartPtr2;
     std::cout<<pSmartPtr1.use_count()<<std::endl;
+    std::cout<<pSmartPtr2.use_count()<<std::endl;
+
+    // 检验赋值操作符的重载
+    int a = 10, b = 20;
+    SmartPtr<int> pSmartPtr3(&a);
+    SmartPtr<int> pSmartPtr4 = pSmartPtr3;
+    SmartPtr<int> pSmartPtr5 = pSmartPtr3;
+    std::cout<<pSmartPtr3.use_count()<<std::endl;
+    pSmartPtr3 = &b;
+    std::cout<<pSmartPtr3.use_count()<<std::endl;
 }

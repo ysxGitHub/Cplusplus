@@ -32,10 +32,10 @@ int maxProfit(vector<int>& prices) {
     // 第 0 天买, 有股票
     dp[0][1] = -prices[0];
     for(int i=1; i<n; i++){
-        //         i-1 天 没有股票,  有则进行卖出     
+        //         i-1 天 没有股票,  有则进行卖出
         dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i]);
         //         i-1 天 有 股票,  没有则进行买入
-        dp[i][1] = max(dp[i-1][1], -prices[i]);   
+        dp[i][1] = max(dp[i-1][1], -prices[i]);
         // dp[i-1][k-1][0]  k=1   dp[i-1][0][0] - prices[i] = - prices[i]
     }
     return dp[n-1][0];

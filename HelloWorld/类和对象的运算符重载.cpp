@@ -24,7 +24,7 @@ public:
     // 不会利用成员函数重载<<运算符，因为无法实现
     // ostream& operator<<()
     // {
-    //     return 
+    //     return
     // }
 
 
@@ -82,7 +82,7 @@ private:
 ostream& operator<<(ostream& cout, MyInteger m1)
 {
     cout<<m1.m;
-    return cout; 
+    return cout;
 }
 
 
@@ -104,13 +104,13 @@ public:
             delete age;
             age = NULL;
         }
-        
+
     }
     Teacher& operator=(Teacher &p)
     {
         // 编译器提供的是浅拷贝
         // age = p.age;
-        
+
         // 先判断是否有属性在堆区，如果有先释放干净，然后再深拷贝
         if(age!=NULL)
         {
@@ -147,7 +147,7 @@ public:
             return false;
         }
 
-    } 
+    }
     bool operator!=(Student &s)
     {
         if((this->age==s.age)&&(this->name==s.name))
@@ -159,7 +159,7 @@ public:
             return true;
         }
 
-    } 
+    }
 
     string name;
     int age;
@@ -191,7 +191,7 @@ int main(int argc, char const *argv[])
     p1.b = 20;
     p2.a = 10;
     p2.b = 20;
-    
+
     // 成员函数重载调用本质
     // Person p3  = p1.operator+(p2);
     // 全局函数重载调用本质

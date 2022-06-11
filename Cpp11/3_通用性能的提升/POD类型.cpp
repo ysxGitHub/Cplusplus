@@ -135,7 +135,7 @@ class C0 : B0 {};
 class D0 { virtual void fn() {} };
 class E0 : virtual public A0 { };
 
-int main1()
+int main()
 {
     // 4.1 对 “平凡” 类型判断
     cout << std::boolalpha;
@@ -186,7 +186,7 @@ struct H : public A {
     int foo;
 };
 
-int main()
+int main1()
 {
     // 4.2 对 “标准布局” 类型的判断
     cout << std::boolalpha;

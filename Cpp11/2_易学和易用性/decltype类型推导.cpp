@@ -55,6 +55,9 @@ decltype(func_cint_r())  e = n;    // cosnt int &e
 decltype(func_cint_rr()) f = 0;    // cosnt int &&f
 decltype(func_ctest()) g = Test(); // const Test g
 
+/*
+函数 func_cint () 返回的是一个纯右值（在表达式执行结束后不再存在的数据，也就是临时性的数据），对于纯右值而言，只有类类型可以携带const、volatile限定符，除此之外需要忽略掉这两个限定符，因此推导出的变量 d 的类型为 int 而不是 const int。
+*/
 
 
 // 规则3：表达式是一个左值，或者被括号 ( ) 包围，使用 decltype 推导出的是表达式类型的引用
@@ -84,5 +87,11 @@ const int &i = 1; //const int tmp =1; const int & i = tmp;
 decltype(m) x; // int x;
 
 
+//3. 对指针的解引用操作返回的是引用类型
+int i1 = 3, j1 = 6, *p1 = &i1;
+decltype(*p1) c1 = j1; // c是int&类型, c和j绑定在一起
 
+int e1 = 4;
+const int* f1 = &e1; // f是底层const
+decltype(auto) j1 = f1;//j的类型是const int* 并且指向的是e
 

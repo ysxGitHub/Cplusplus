@@ -42,6 +42,11 @@ void twoSum(vector<int>& nums, int left, int right, int target){
     while(left<right){
         int sum = nums[left] + nums[right];
         int tmpLeft = nums[left], tmpRight = nums[right];
+        // 去重复逻辑如果放在这里，0，0，0 的情况，可能直接导致 right<=left 了，从而漏掉了 0,0,0 这种三元组
+        /*
+            while (right > left && nums[right] == tmpRight) right--;
+            while (right > left && nums[left] == tmpLeft) left++;
+        */
         if(target > sum){
             // while 要调过相同元素，防止重复添加相同 vector
             while(left<right&&nums[left]==tmpLeft){++left; }
@@ -66,14 +71,20 @@ vector<vector<int>> threeSum(vector<int>& nums) {
     sort(nums.begin(), nums.end());
 
     for(int i=0; i<n; i++){
-        // 跳过相同元素
+        // 错误去重方法，将会漏掉-1,-1,2 这种情况
+        /*
+        if (nums[i] == nums[i + 1]) {
+            continue;
+        }
+        */
+        // 正确去重方法 跳过相同元素
         if(i>0&&nums[i]==nums[i-1]){
             continue;
         }
-        // 这里 right 的起始点要从下一个元素开始 i+1，不能取自己（重复）， 
+        // 这里 right 的起始点要从下一个元素开始 i+1，不能取自己（重复），
         twoSum(nums, i+1, n-1, -nums[i]);
     }
-    
+
     return ans;
 }
 

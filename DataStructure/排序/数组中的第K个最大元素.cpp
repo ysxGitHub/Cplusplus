@@ -25,7 +25,7 @@ int findKthLargest1(vector<int>& nums, int k) {
 
 int partition(vector<int>& nums, int lo, int hi){
     int privot = nums[hi];
-    int i = 0, j = 0;
+    int i = lo, j = lo;
     for(i; i<hi; i++){
         // 这里必须是 >= 或 <
         if(nums[i]>=privot){
@@ -46,7 +46,7 @@ int findKthLargest(vector<int>& nums, int k) {
         if(mid > k){
             right = mid - 1;
         }else if(mid < k){
-            left = mid + 1; 
+            left = mid + 1;
         }else{
             return nums[mid];
         }
@@ -56,6 +56,6 @@ int findKthLargest(vector<int>& nums, int k) {
 
 int main(int argc, char const *argv[])
 {
-    
+
     return 0;
 }

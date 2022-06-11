@@ -22,11 +22,11 @@ int trap(vector<int>& height) {
         r_max = max(r_max, height[right]);
         // 找到最小的一边，计算当前位置可以盛放的水
         if(l_max > r_max){
-            ans += r_max - height[left];
-            left++;
-        }else{
-            ans += l_max - height[right];
+            ans += r_max - height[right];
             right--;
+        }else{
+            ans += l_max - height[left];
+            left++;
         }
     }
     return ans;
