@@ -5,3 +5,4 @@
 - [labuladong 的算法](https://labuladong.gitee.io/algo/)(Algorithm)
 - [力扣](https://leetcode.cn/problemset/all/)(Algorithm)
 - [牛客](https://www.nowcoder.com/)(Looking for a job)
+- [阿秀的面经](https://github.com/forthespada/InterviewGuide)(Some may not so correct)
